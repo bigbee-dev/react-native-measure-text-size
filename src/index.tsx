@@ -1,7 +1,7 @@
 import { NativeModules } from 'react-native';
 
 type MeasureTextSizeType = {
-  multiply(a: number, b: number): Promise<number>;
+  heights(options: any): Promise<number[]>;
 };
 
 const { MeasureTextSize } = NativeModules;
