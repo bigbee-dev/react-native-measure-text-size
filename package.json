@@ -1,5 +1,5 @@
 {
-  "name": "react-native-measure-text-size",
+  "name": "@bigbee.dev/react-native-measure-text-size",
   "version": "0.1.0",
   "description": "Measure text height without laying it out",
   "main": "lib/commonjs/index",
@@ -33,8 +33,15 @@
   },
   "keywords": [
     "react-native",
-    "ios",
-    "android"
+    "measure",
+    "text",
+    "size",
+    "height",
+    "precompute",
+    "block",
+    "layout",
+    "multiline",
+    "fonts"
   ],
   "repository": "https://github.com/bigbee-dev/react-native-measure-text-size",
   "author": "Big Bee <hello@bigbee.dev> (https://bigbee.dev)",

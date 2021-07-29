@@ -5,17 +5,22 @@ Measure text height without laying it out
 ## Installation
 
 ```sh
-npm install react-native-measure-text-size
+yarn add @bigbee.dev/react-native-measure-text-size
+npm install @bigbee.dev/react-native-measure-text-size
 ```
 
 ## Usage
 
 ```js
-import MeasureTextSize from "react-native-measure-text-size";
+import { measureHeights } from "@bigbee.dev/react-native-measure-text-size";
 
 // ...
 
-const result = await MeasureTextSize.multiply(3, 7);
+const result = await measureHeights({
+  texts: ['Hello', 'World'],
+  width: 200,
+});
+
 ```
 
 ## Contributing

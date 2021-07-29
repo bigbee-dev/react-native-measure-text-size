@@ -9,7 +9,7 @@ import {
   PixelRatio,
   SafeAreaView,
 } from 'react-native';
-import { measureHeights } from 'react-native-measure-text-size';
+import { measureHeights } from '@bigbee.dev/react-native-measure-text-size';
 
 const fontSize = 14;
 
