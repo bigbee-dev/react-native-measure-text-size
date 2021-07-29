@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/jittuu/react-native-measure-text-size",
-  "author": "Soe Moe Tun Lwin",
+  "repository": "https://github.com/bigbee-dev/react-native-measure-text-size",
+  "author": "Big Bee <hello@bigbee.dev> (https://bigbee.dev)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jittuu/react-native-measure-text-size/issues"
+    "url": "https://github.com/bigbee-dev/react-native-measure-text-size/issues"
   },
-  "homepage": "https://github.com/jittuu/react-native-measure-text-size#readme",
+  "homepage": "https://github.com/bigbee-dev/react-native-measure-text-size#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

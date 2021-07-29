@@ -1,9 +1,30 @@
 import { NativeModules } from 'react-native';
 
-type MeasureTextSizeType = {
-  heights(options: any): Promise<number[]>;
-};
+export type FontWeight =
+  | 'normal'
+  | 'bold'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900';
+
+export type FontStyle = 'normal' | 'italic';
+
+export interface MeasureOptions {
+  texts: string[];
+  width: number;
+  fontFamily?: string;
+  fontSize?: number;
+  fontWeight?: FontWeight;
+  fontStyle?: FontStyle;
+}
 
 const { MeasureTextSize } = NativeModules;
-
-export default MeasureTextSize as MeasureTextSizeType;
+export function measureHeights(options: MeasureOptions): Promise<number[]> {
+  return MeasureTextSize.heights(options);
+}

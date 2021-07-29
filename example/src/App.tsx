@@ -9,7 +9,7 @@ import {
   PixelRatio,
   SafeAreaView,
 } from 'react-native';
-import MeasureTextSize from 'react-native-measure-text-size';
+import { measureHeights } from 'react-native-measure-text-size';
 
 const fontSize = 14;
 
@@ -27,7 +27,7 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const rr = await MeasureTextSize.heights({
+      const rr = await measureHeights({
         texts,
         width: 200,
         fontSize,
@@ -44,10 +44,9 @@ export default function App() {
           <Text>Pixel Ratio (density): {PixelRatio.get()}</Text>
           <Text>Font scale: {PixelRatio.getFontScale()}</Text>
           <Text>
-            Font 14 in px:{' '}
-            {PixelRatio.roundToNearestPixel(
+            {`Font 14 in px: ${PixelRatio.roundToNearestPixel(
               PixelRatio.getPixelSizeForLayoutSize(14)
-            )}
+            )}`}
           </Text>
 
           <Text>Text Result: {JSON.stringify(heights)}</Text>
