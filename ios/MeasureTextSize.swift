@@ -1,5 +1,9 @@
 @objc(MeasureTextSize)
 class MeasureTextSize: NSObject {
+    @objc static func requiresMainQueueSetup() -> Bool {
+        return false
+    }
+    
     @objc(heights:resolver:rejecter:)
     func heights(_ options: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         let texts = RCTConvert.nsArray(options["texts"]) ?? [];
