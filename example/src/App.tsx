@@ -11,7 +11,13 @@ import {
 } from 'react-native';
 import { measureHeights } from '@bigbee.dev/react-native-measure-text-size';
 
-const fontSize = 14;
+const textSpec = {
+  fontSize: 14,
+  lineHeight: 14 * 1.9,
+  // fontFamily: 'NotoSansMyanmar-Regular',
+};
+
+const width = 200;
 
 export default function App() {
   const [heights, setHeights] = useState<number[]>([]);
@@ -19,8 +25,17 @@ export default function App() {
     () => [
       'Hello, gg',
       'မြန်မာစာ',
+      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင်',
+      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံ',
+      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က ',
       '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။',
+      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။' +
+        '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။',
+      'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion ',
       'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.',
+      'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
+        'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
+        'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.',
     ],
     []
   );
@@ -29,8 +44,8 @@ export default function App() {
     (async () => {
       const rr = await measureHeights({
         texts,
-        width: 200,
-        fontSize,
+        width,
+        ...textSpec,
       });
 
       setHeights(rr);
@@ -38,16 +53,12 @@ export default function App() {
   }, [texts]);
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
+    <View style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
           <Text>Pixel Ratio (density): {PixelRatio.get()}</Text>
           <Text>Font scale: {PixelRatio.getFontScale()}</Text>
-          <Text>
-            {`Font 14 in px: ${PixelRatio.roundToNearestPixel(
-              PixelRatio.getPixelSizeForLayoutSize(14)
-            )}`}
-          </Text>
+          <Text> Width: {PixelRatio.getPixelSizeForLayoutSize(200)}</Text>
 
           <Text>Text Result: {JSON.stringify(heights)}</Text>
           {heights.length > 0 &&
@@ -57,7 +68,7 @@ export default function App() {
                   style={[
                     styles.textWrapper,
                     {
-                      height: heights[i] + 20,
+                      height: heights[i],
                     },
                   ]}
                 >
@@ -74,24 +85,25 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   scrollContentContainer: {
     paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   textContainer: {
-    width: 220,
-    flexDirection: 'row',
-  },
-  textWrapper: {
     backgroundColor: '#eee',
-    borderRadius: 10,
     marginVertical: 4,
     padding: 10,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textWrapper: {
+    width,
+    justifyContent: 'center',
   },
   text: {
-    textAlignVertical: 'center',
-    fontSize,
+    ...textSpec,
   },
 });

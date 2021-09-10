@@ -5,15 +5,23 @@ import android.graphics.Typeface
 import android.graphics.text.LineBreaker
 import android.os.Build
 import android.text.Layout
+import android.text.Spannable.SPAN_INCLUSIVE_INCLUSIVE
+import android.text.SpannableStringBuilder
 import android.text.StaticLayout
 import android.text.TextPaint
+import android.text.style.AbsoluteSizeSpan
+import android.util.Log
 import android.util.TypedValue
 import com.facebook.react.bridge.*
 import com.facebook.react.views.text.ReactFontManager
 import kotlin.math.ceil
 
 
-class MeasureTextSizeModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
+  private val tag = "MText"
+  private val spacingMultiplier = 1.0f
+  private val spacingAddition = 0f
 
   override fun getName(): String {
     return "MeasureTextSize"
@@ -22,27 +30,51 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) : ReactContex
   @SuppressLint("WrongConstant")
   @ReactMethod
   fun heights(options: ReadableMap, promise: Promise) {
+
     val texts = options.getArray("texts")
 
     val optWidth = options.getDouble("width").toFloat()
     val width = ceil(dpToPx(optWidth)).toInt()
+    Log.i(tag, "optW: $optWidth, width: $width")
 
     val fontSize = if (options.hasKey("fontSize")) options.getDouble("fontSize").toFloat() else 14f
+    val lineHeight =
+      if (options.hasKey("lineHeight")) options.getDouble("lineHeight")
+        .toFloat() else null
     val fontFamily = getString(options, "fontFamily")
     val fontWeight = getString(options, "fontWeight")
     val fontStyle = getString(options, "fontStyle")
     val style = getFontStyle(fontStyle, fontWeight)
-    val paint = createTextPaint(fontSize, fontFamily, style)
+    val typeface = getFont(fontFamily, style)
+    val paint = createTextPaint(fontSize, typeface)
 
     val results = Arguments.createArray()
     for (i in 0 until texts!!.size()) {
-      val text = texts.getString(i)
-      val spacingMultiplier = 1f
-      val spacingAddition = 0f
-      val includePadding = true
+      val text = texts.getString(i)!!
+      val end = text.length
+      val spannable = SpannableStringBuilder(text)
+      spannable.setSpan(
+        AbsoluteSizeSpan(spToPx(fontSize).toInt(), true),
+        0,
+        end,
+        SPAN_INCLUSIVE_INCLUSIVE
+      )
+      if (lineHeight != null) {
+        spannable.setSpan(
+          CustomLineHeightSpan(dpToPx(lineHeight)),
+          0, end, SPAN_INCLUSIVE_INCLUSIVE
+        )
+      }
+      if (fontFamily != null) {
+        spannable.setSpan(
+          CustomTypefaceSpan(typeface),
+          0, end, SPAN_INCLUSIVE_INCLUSIVE
+        )
+      }
+      val includePadding = false
       val layout = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
         StaticLayout(
-          text,
+          spannable,
           paint,
           width,
           Layout.Alignment.ALIGN_NORMAL,
@@ -51,25 +83,33 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) : ReactContex
           includePadding
         )
       } else {
-        val breakStrategy = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) LineBreaker.BREAK_STRATEGY_HIGH_QUALITY else 0
-        StaticLayout.Builder.obtain(text!!, 0, text.length, paint, width)
-          .setAlignment(Layout.Alignment.ALIGN_NORMAL)
-          .setLineSpacing(spacingAddition, spacingMultiplier)
-          .setIncludePad(includePadding)
-          .setBreakStrategy(breakStrategy)
-          .setHyphenationFrequency(Layout.HYPHENATION_FREQUENCY_NORMAL)
-          .build()
+        val breakStrategy =
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) LineBreaker.BREAK_STRATEGY_HIGH_QUALITY else 0
+        var builder =
+          StaticLayout.Builder.obtain(spannable, 0, text.length, paint, width)
+            .setIndents(null, null)
+            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+            .setLineSpacing(spacingAddition, spacingMultiplier)
+            .setIncludePad(includePadding)
+            .setBreakStrategy(breakStrategy)
+            .setHyphenationFrequency(Layout.HYPHENATION_FREQUENCY_FULL)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+          builder = builder.setUseLineSpacingFromFallbacks(true)
+        }
+        builder.build()
       }
+
+      Log.i(tag, "line count: ${layout.lineCount}")
       results.pushInt(ceil(pxToDp(layout.height)).toInt())
     }
 
     promise.resolve(results)
   }
 
-  private fun createTextPaint(fontSize: Float, fontFamily: String?, style: Int): TextPaint {
+  private fun createTextPaint(fontSize: Float, typeface: Typeface): TextPaint {
     val paint = TextPaint(TextPaint.ANTI_ALIAS_FLAG)
     paint.textSize = spToPx(fontSize)
-    paint.typeface = getFont(fontFamily, style)
+    paint.typeface = typeface
     return paint
   }
 
@@ -77,7 +117,8 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) : ReactContex
     family: String?,
     style: Int
   ): Typeface {
-    val typeface = if (family != null) ReactFontManager.getInstance().getTypeface(family, style, reactApplicationContext.assets) else null
+    val typeface = if (family != null) ReactFontManager.getInstance()
+      .getTypeface(family, style, reactApplicationContext.assets) else null
     return typeface ?: Typeface.defaultFromStyle(style)
   }
 
@@ -95,10 +136,18 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) : ReactContex
     if (options.hasKey(key)) options.getString(key) else null
 
   private fun dpToPx(dip: Float): Float =
-    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, reactApplicationContext.resources.displayMetrics)
+    TypedValue.applyDimension(
+      TypedValue.COMPLEX_UNIT_DIP,
+      dip,
+      reactApplicationContext.resources.displayMetrics
+    )
 
   private fun spToPx(sp: Float): Float =
-    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, reactApplicationContext.resources.displayMetrics)
+    TypedValue.applyDimension(
+      TypedValue.COMPLEX_UNIT_SP,
+      sp,
+      reactApplicationContext.resources.displayMetrics
+    )
 
   private fun pxToDp(px: Int): Float =
     px / reactApplicationContext.resources.displayMetrics.density
