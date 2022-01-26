@@ -35,7 +35,9 @@ export default function App() {
       'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.',
       'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
         'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
-        'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.',
+        `For argument types not listed above,
+        
+         you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.`,
     ],
     []
   );
@@ -102,7 +104,6 @@ const styles = StyleSheet.create({
   textWrapper: {
     width,
     justifyContent: 'center',
-    overflow: 'hidden',
   },
   text: {
     ...textSpec,
