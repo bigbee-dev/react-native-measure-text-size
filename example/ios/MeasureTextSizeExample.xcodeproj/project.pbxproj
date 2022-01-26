@@ -17,8 +17,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* MeasureTextSizeExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MeasureTextSizeExampleTests.m */; };
 		4C39C56BAD484C67AA576FFA /* libPods-MeasureTextSizeExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3E69C5B9553B26FBA2DF04 /* libPods-MeasureTextSizeExample.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		DBA3FD7BB3F44EABACEBA2DE /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C143C8C5754A472AA1361C4F /* Inter-Regular.ttf */; };
 		8C9DF0D438404E949F375E1E /* NotoSansMyanmar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC95D78824C40FBAF48EA25 /* NotoSansMyanmar-Regular.ttf */; };
+		DBA3FD7BB3F44EABACEBA2DE /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C143C8C5754A472AA1361C4F /* Inter-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +43,7 @@
 		00E356EE1AD99517003FC87E /* MeasureTextSizeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeasureTextSizeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MeasureTextSizeExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeasureTextSizeExampleTests.m; sourceTree = "<group>"; };
+		0BC95D78824C40FBAF48EA25 /* NotoSansMyanmar-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSansMyanmar-Regular.ttf"; path = "../assets/fonts/NotoSansMyanmar-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MeasureTextSizeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeasureTextSizeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MeasureTextSizeExample/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MeasureTextSizeExample/AppDelegate.m; sourceTree = "<group>"; };
@@ -53,12 +54,11 @@
 		2D02E4901E0B4A5D006451C7 /* MeasureTextSizeExample-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MeasureTextSizeExample-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F7ED3B7971BE374F7B8635 /* Pods-MeasureTextSizeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeasureTextSizeExample.debug.xcconfig"; path = "Target Support Files/Pods-MeasureTextSizeExample/Pods-MeasureTextSizeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MeasureTextSizeExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C143C8C5754A472AA1361C4F /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CA3E69C5B9553B26FBA2DF04 /* libPods-MeasureTextSizeExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeasureTextSizeExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E00ACF0FDA8BF921659E2F9A /* Pods-MeasureTextSizeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeasureTextSizeExample.release.xcconfig"; path = "Target Support Files/Pods-MeasureTextSizeExample/Pods-MeasureTextSizeExample.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		C143C8C5754A472AA1361C4F /* Inter-Regular.ttf */ = {isa = PBXFileReference; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0BC95D78824C40FBAF48EA25 /* NotoSansMyanmar-Regular.ttf */ = {isa = PBXFileReference; name = "NotoSansMyanmar-Regular.ttf"; path = "../assets/fonts/NotoSansMyanmar-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +135,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5C226D484C614A88A06929DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C143C8C5754A472AA1361C4F /* Inter-Regular.ttf */,
+				0BC95D78824C40FBAF48EA25 /* NotoSansMyanmar-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		6B9684456A2045ADE5A6E47E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,16 +188,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		5C226D484C614A88A06929DD /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				C143C8C5754A472AA1361C4F /* Inter-Regular.ttf */,
-				0BC95D78824C40FBAF48EA25 /* NotoSansMyanmar-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -410,7 +410,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MeasureTextSizeExample/Pods-MeasureTextSizeExample-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
