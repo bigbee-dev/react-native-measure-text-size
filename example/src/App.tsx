@@ -55,32 +55,30 @@ export default function App() {
   }, [texts]);
 
   return (
-    <View style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContentContainer}>
-          <Text>Pixel Ratio (density): {PixelRatio.get()}</Text>
-          <Text>Font scale: {PixelRatio.getFontScale()}</Text>
-          <Text> Width: {PixelRatio.getPixelSizeForLayoutSize(200)}</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContentContainer}>
+        <Text>Pixel Ratio (density): {PixelRatio.get()}</Text>
+        <Text>Font scale: {PixelRatio.getFontScale()}</Text>
+        <Text> Width: {PixelRatio.getPixelSizeForLayoutSize(200)}</Text>
 
-          <Text>Text Result: {JSON.stringify(heights)}</Text>
-          {heights.length > 0 &&
-            texts.map((t, i) => (
-              <View key={i} style={styles.textContainer}>
-                <View
-                  style={[
-                    styles.textWrapper,
-                    {
-                      height: heights[i],
-                    },
-                  ]}
-                >
-                  <Text style={[styles.text]}>{t}</Text>
-                </View>
+        <Text>Text Result: {JSON.stringify(heights)}</Text>
+        {heights.length > 0 &&
+          texts.map((t, i) => (
+            <View key={i} style={styles.textContainer}>
+              <View
+                style={[
+                  styles.textWrapper,
+                  {
+                    height: heights[i],
+                  },
+                ]}
+              >
+                <Text style={[styles.text]}>{t}</Text>
               </View>
-            ))}
-        </ScrollView>
-      </SafeAreaView>
-    </View>
+            </View>
+          ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
