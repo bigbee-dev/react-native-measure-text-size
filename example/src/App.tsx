@@ -22,22 +22,23 @@ export default function App() {
   const [heights, setHeights] = useState<number[]>([]);
   const texts = useMemo(
     () => [
-      'Hello, gg',
-      'မြန်မာစာ',
-      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင်',
-      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံ',
-      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က ',
-      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။',
-      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။' +
-        '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။',
-      'မြိုင်မြိုင်ဆိုင်ဆိုင်ဒုတိယအကြိမ်ပရိုမိုးရှင်း! *71111#ကိုခေါ်ပြီး MPT Special Flash အစီအစဉ်မှာ စာရင်းသွင်းပါဝင်ရုံနဲ့ အထူးလက်ဆောင်ကံထူးနိုင်ပြီ။ ၁၁-၁၁-၂၀၂၁ ရက်နေ့ MPT Special Day အစီအစဉ် ရဲ့ ပရိုမိုးရှင်းတွေ မှာပါဝင်ဖို့ ရင်ခုန်စောင့်မျှော်လိုက်ကြစို့။ ကံထူးနိုင်မည့် အထူးလက်ဆောင်အရေအတွက်ကန့်သတ်ထားတာမို့ အခုပဲမြန်မြန်ခေါ်ဆိုလိုက်ကြရအောင်။ https://bit.ly/3jExNyo “အတူလက်တွဲအမြဲရှိမည် MPT”။မြိုင်မြိုင်ဆိုင်ဆိုင်ဒုတိယအကြိမ်ပရိုမိုးရှင်း! *71111#ကိုခေါ်ပြီး MPT Special Flash အစီအစဉ်မှာ စာရင်းသွင်းပါဝင်ရုံနဲ့ အထူးလက်ဆောင်ကံထူးနိုင်ပြီ။ ၁၁-၁၁-၂၀၂၁ ရက်နေ့ MPT Special Day အစီအစဉ် ရဲ့ ပရိုမိုးရှင်းတွေ မှာပါဝင်ဖို့ ရင်ခုန်စောင့်မျှော်လိုက်ကြစို့။ ကံထူးနိုင်မည့် အထူးလက်ဆောင်အရေအတွက်ကန့်သတ်ထားတာမို့ အခုပဲမြန်မြန်ခေါ်ဆိုလိုက်ကြရအောင်။ https://bit.ly/3jExNyo “အတူလက်တွဲအမြဲရှိမည် MPT”။',
-      'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion ',
-      'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.',
-      'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
-        'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
-        `For argument types not listed above,
-        
-         you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.`,
+      // 'Hello, gg',
+      `ကားဂိတ်နဲ့ဆိုရင်တော့ ငွေကြိုလွှဲပေးရပါတယ် အမ ဆိုင်က‌နေ ကားဂိတ်ပို့ခ 1000 ပါ အမကုန်ကြွေးလေးနဲ့ တင်ပေးလိုက်မှာပါရှင့်`,
+      // 'မြန်မာစာ',
+      // '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင်',
+      // '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံ',
+      // '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က ',
+      // '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။',
+      // '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။' +
+      //   '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။',
+      // 'မြိုင်မြိုင်ဆိုင်ဆိုင်ဒုတိယအကြိမ်ပရိုမိုးရှင်း! *71111#ကိုခေါ်ပြီး MPT Special Flash အစီအစဉ်မှာ စာရင်းသွင်းပါဝင်ရုံနဲ့ အထူးလက်ဆောင်ကံထူးနိုင်ပြီ။ ၁၁-၁၁-၂၀၂၁ ရက်နေ့ MPT Special Day အစီအစဉ် ရဲ့ ပရိုမိုးရှင်းတွေ မှာပါဝင်ဖို့ ရင်ခုန်စောင့်မျှော်လိုက်ကြစို့။ ကံထူးနိုင်မည့် အထူးလက်ဆောင်အရေအတွက်ကန့်သတ်ထားတာမို့ အခုပဲမြန်မြန်ခေါ်ဆိုလိုက်ကြရအောင်။ https://bit.ly/3jExNyo “အတူလက်တွဲအမြဲရှိမည် MPT”။မြိုင်မြိုင်ဆိုင်ဆိုင်ဒုတိယအကြိမ်ပရိုမိုးရှင်း! *71111#ကိုခေါ်ပြီး MPT Special Flash အစီအစဉ်မှာ စာရင်းသွင်းပါဝင်ရုံနဲ့ အထူးလက်ဆောင်ကံထူးနိုင်ပြီ။ ၁၁-၁၁-၂၀၂၁ ရက်နေ့ MPT Special Day အစီအစဉ် ရဲ့ ပရိုမိုးရှင်းတွေ မှာပါဝင်ဖို့ ရင်ခုန်စောင့်မျှော်လိုက်ကြစို့။ ကံထူးနိုင်မည့် အထူးလက်ဆောင်အရေအတွက်ကန့်သတ်ထားတာမို့ အခုပဲမြန်မြန်ခေါ်ဆိုလိုက်ကြရအောင်။ https://bit.ly/3jExNyo “အတူလက်တွဲအမြဲရှိမည် MPT”။',
+      // 'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion ',
+      // 'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.',
+      // 'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
+      //   'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
+      //   `For argument types not listed above,
+
+      //    you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.`,
     ],
     []
   );
@@ -55,6 +56,7 @@ export default function App() {
   }, [texts]);
 
   return (
+    // eslint-disable-next-line react-native/no-inline-styles
     <View style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
