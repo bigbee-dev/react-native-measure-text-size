@@ -11,8 +11,8 @@ import android.text.StaticLayout
 import android.text.TextPaint
 import android.text.style.AbsoluteSizeSpan
 import android.util.Log
-import android.util.TypedValue
 import com.facebook.react.bridge.*
+import com.facebook.react.uimanager.PixelUtil
 import com.facebook.react.views.text.ReactFontManager
 import kotlin.math.ceil
 
@@ -54,14 +54,14 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
       val end = text.length
       val spannable = SpannableStringBuilder(text)
       spannable.setSpan(
-        AbsoluteSizeSpan(spToPx(fontSize).toInt(), true),
+        AbsoluteSizeSpan(ceil(spToPx(fontSize)).toInt(), false),
         0,
         end,
         SPAN_INCLUSIVE_INCLUSIVE
       )
       if (lineHeight != null) {
         spannable.setSpan(
-          CustomLineHeightSpan(dpToPx(lineHeight)),
+          CustomLineHeightSpan(spToPx(lineHeight)),
           0, end, SPAN_INCLUSIVE_INCLUSIVE
         )
       }
@@ -108,7 +108,7 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
 
   private fun createTextPaint(fontSize: Float, typeface: Typeface): TextPaint {
     val paint = TextPaint(TextPaint.ANTI_ALIAS_FLAG)
-    paint.textSize = spToPx(fontSize)
+    paint.textSize = ceil(spToPx(fontSize))
     paint.typeface = typeface
     return paint
   }
@@ -129,6 +129,7 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
         "bold", "900", "800", "700", "600", "500" -> style = style or Typeface.BOLD
       }
     }
+
     return style
   }
 
@@ -136,19 +137,11 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
     if (options.hasKey(key)) options.getString(key) else null
 
   private fun dpToPx(dip: Float): Float =
-    TypedValue.applyDimension(
-      TypedValue.COMPLEX_UNIT_DIP,
-      dip,
-      reactApplicationContext.resources.displayMetrics
-    )
+    PixelUtil.toPixelFromDIP(dip)
 
   private fun spToPx(sp: Float): Float =
-    TypedValue.applyDimension(
-      TypedValue.COMPLEX_UNIT_SP,
-      sp,
-      reactApplicationContext.resources.displayMetrics
-    )
+    PixelUtil.toPixelFromSP(sp)
 
   private fun pxToDp(px: Int): Float =
-    px / reactApplicationContext.resources.displayMetrics.density
+    PixelUtil.toDIPFromPixel(px.toFloat())
 }
