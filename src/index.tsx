@@ -23,6 +23,7 @@ export interface MeasureOptions {
   fontWeight?: FontWeight;
   fontStyle?: FontStyle;
   lineHeight?: number;
+  maxLines?: number;
 }
 
 const { MeasureTextSize } = NativeModules;

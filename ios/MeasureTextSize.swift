@@ -7,10 +7,15 @@ class MeasureTextSize: NSObject {
     @objc(heights:resolver:rejecter:)
     func heights(_ options: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         let texts = RCTConvert.nsArray(options["texts"]) ?? [];
-        let optWidth = RCTConvert.float(options["width"]);
+        let optWidth = RCTConvert.cgFloat(options["width"]);
+        let optMaxLines = RCTConvert.nsInteger(options["maxLines"]);
         let optLineHeight = RCTConvert.cgFloat(options["lineHeight"]);
         let font = getFont(options)
-        let textContainer = NSTextContainer(size: CGSize(width: CGFloat(optWidth), height: CGFloat(Float.greatestFiniteMagnitude)))
+        let textContainer = NSTextContainer(size: CGSize(width: optWidth, height: CGFloat(Float.greatestFiniteMagnitude)))
+        
+        if optMaxLines > 0 {
+            textContainer.maximumNumberOfLines = optMaxLines;
+        }
         
         let paragraph = NSMutableParagraphStyle()
         if optLineHeight > 0 {
