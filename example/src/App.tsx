@@ -18,8 +18,34 @@ const textSpec = {
 
 const width = 275;
 
+const renderLines = (heights: number[], texts: string[], maxLines?: number) => {
+  return (
+    <>
+      {heights.length > 0 &&
+        texts.map((t, i) => (
+          <View key={i} style={styles.textContainer}>
+            <View
+              style={[
+                styles.textWrapper,
+                {
+                  height: heights[i],
+                },
+              ]}
+            >
+              <Text style={[styles.text]} numberOfLines={maxLines}>
+                {t}
+              </Text>
+            </View>
+          </View>
+        ))}
+    </>
+  );
+};
+
 export default function App() {
   const [heights, setHeights] = useState<number[]>([]);
+  const [twoLinesHeights, setTwoLinesHeights] = useState<number[]>([]);
+
   const texts = useMemo(
     () => [
       'Hello, gg',
@@ -36,8 +62,16 @@ export default function App() {
       'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
         'For argument types not listed above, you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.' +
         `For argument types not listed above,
-        
          you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.`,
+    ],
+    []
+  );
+
+  const twoLinesTexts = useMemo(
+    () => [
+      '၂၀၂၁ ခုနှစ် ဇူလိုင် ၂၇ ရက်တွင် မြန်မာနိုင်ငံတော်ဗဟိုဘဏ်က နိုင်ငံခြားငွေစျေးပြိုင်လေလံဖြင့် ဒေါ်လာသုံးသန်း ထပ်မံရောင်းချခဲ့ပြီး ဇူလိုင်လတစ်လနီးပါးတွင် ဒေါ်လာ ကိုးကြိမ်ရောင်းချခဲ့ပြီး ဒေါ်လာသန်း ၃၀ အထိ စံချိန်တင်ရောင်းချခဲ့ခြင်း ဖြစ်ကြောင်း သိရသည်။',
+      `For argument types not listed above,
+       you will need to handle the conversion yourself. For example, in Android, Date conversion is not supported out of the box.`,
     ],
     []
   );
@@ -51,8 +85,17 @@ export default function App() {
       });
 
       setHeights(rr);
+
+      const rr2 = await measureHeights({
+        texts: twoLinesTexts,
+        maxLines: 2,
+        width,
+        ...textSpec,
+      });
+
+      setTwoLinesHeights(rr2);
     })();
-  }, [texts]);
+  }, [texts, twoLinesTexts]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -62,21 +105,8 @@ export default function App() {
         <Text> Width: {PixelRatio.getPixelSizeForLayoutSize(200)}</Text>
 
         <Text>Text Result: {JSON.stringify(heights)}</Text>
-        {heights.length > 0 &&
-          texts.map((t, i) => (
-            <View key={i} style={styles.textContainer}>
-              <View
-                style={[
-                  styles.textWrapper,
-                  {
-                    height: heights[i],
-                  },
-                ]}
-              >
-                <Text style={[styles.text]}>{t}</Text>
-              </View>
-            </View>
-          ))}
+        {renderLines(heights, texts)}
+        {renderLines(twoLinesHeights, twoLinesTexts, 2)}
       </ScrollView>
     </SafeAreaView>
   );

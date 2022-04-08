@@ -4,11 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.graphics.text.LineBreaker
 import android.os.Build
-import android.text.Layout
+import android.text.*
 import android.text.Spannable.SPAN_INCLUSIVE_INCLUSIVE
-import android.text.SpannableStringBuilder
-import android.text.StaticLayout
-import android.text.TextPaint
 import android.text.style.AbsoluteSizeSpan
 import android.util.Log
 import com.facebook.react.bridge.*
@@ -40,7 +37,7 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
     val fontSize = if (options.hasKey("fontSize")) options.getDouble("fontSize").toFloat() else 14f
     val lineHeight =
       if (options.hasKey("lineHeight")) options.getDouble("lineHeight")
-        .toFloat() else null
+        .toFloat() else 0f
     val fontFamily = getString(options, "fontFamily")
     val fontWeight = getString(options, "fontWeight")
     val fontStyle = getString(options, "fontStyle")
@@ -59,7 +56,7 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
         end,
         SPAN_INCLUSIVE_INCLUSIVE
       )
-      if (lineHeight != null) {
+      if (lineHeight > 0) {
         spannable.setSpan(
           CustomLineHeightSpan(spToPx(lineHeight)),
           0, end, SPAN_INCLUSIVE_INCLUSIVE
@@ -95,6 +92,14 @@ class MeasureTextSizeModule(reactContext: ReactApplicationContext) :
             .setHyphenationFrequency(Layout.HYPHENATION_FREQUENCY_FULL)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
           builder = builder.setUseLineSpacingFromFallbacks(true)
+        }
+        val maxLines =
+          if (options.hasKey("maxLines")) options.getInt("maxLines") else 0
+
+        if (maxLines > 0) {
+          builder = builder
+            .setMaxLines(maxLines)
+            .setEllipsize(TextUtils.TruncateAt.END)
         }
         builder.build()
       }
